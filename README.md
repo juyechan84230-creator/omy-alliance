@@ -52,3 +52,6 @@ Supabase에서 `Database → Replication`으로 이동해 `battle_records` 테�
 
 ## v2.4 연맹원 등급
 연맹원 등급을 `엔지니어`와 `전쟁리더`로 구분했습니다. 기존 데이터가 있으면 `supabase/roster-rank-update.sql`을 한 번 실행하세요.
+
+## v2.5 테스트 데이터 정리
+시즌 표기를 제거하고 샘플 화면 데이터를 빈 상태로 변경했습니다. `supabase/cleanup-demo-data.sql`은 현재 테스트 데이터를 모두 삭제하므로 실제 운영 데이터가 있을 때는 실행하지 마세요.
