@@ -19,3 +19,6 @@
 
 ## v0.5 공유 동기화
 입장 시 Supabase battle_records를 읽어 대시보드와 전투 기록 화면을 갱신합니다. `supabase/enable-anonymous.sql`을 한 번 실행한 뒤 배포하세요.
+
+## v0.7 관리자 기록 삭제
+`supabase/admin-functions.sql`을 SQL Editor에서 한 번 실행하면 관리자 모드에서 전투 기록 삭제가 가능합니다. 관리자 코드는 DB 함수에서 검증됩니다.
