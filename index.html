@@ -51,7 +51,7 @@
     <div class="table-wrap"><table class="table" style="min-width:500px"><thead><tr><th>연맹원</th><th>등급</th><th>메모</th><th>등록일</th><th>상태</th></tr></thead><tbody id="directoryRows"></tbody></table></div>
   </section>
   <section id="battleSection" class="card battle-log" style="margin-top:18px;padding:20px 22px">
-    <div class="card-title"><div><h2>전투 기록 분석</h2><p>사막 전투·협곡 전투·연맹 대결 기록을 유형별로 확인합니다.</p></div><div style="display:flex;gap:8px;align-items:center"><select id="battleFilter" class="soft-btn" style="height:34px;padding:0 30px 0 10px"><option value="전체">전체 전투</option><option value="사막 전투">사막 전투</option><option value="협곡 전투">협곡 전투</option><option value="연맹 대결">연맹 대결</option></select><button class="soft-btn" id="exportRecords" style="height:34px;font-size:12px">↓ CSV 내보내기</button></div></div>
+    <div class="card-title"><div><h2>전투 기록 분석</h2><p>사막 전투·협곡 전투·연맹 대결 기록을 유형별로 확인합니다.</p></div><div style="display:flex;gap:8px;align-items:center"><select id="dateFilter" class="soft-btn" style="height:34px;padding:0 30px 0 10px"><option value="all">전체 기간</option><option value="7">최근 7일</option><option value="30" selected>최근 30일</option></select><select id="battleFilter" class="soft-btn" style="height:34px;padding:0 30px 0 10px"><option value="전체">전체 전투</option><option value="사막 전투">사막 전투</option><option value="협곡 전투">협곡 전투</option><option value="연맹 대결">연맹 대결</option></select><button class="soft-btn" id="exportRecords" style="height:34px;font-size:12px">↓ CSV 내보내기</button></div></div>
     <div class="table-wrap"><table class="table" style="min-width:680px"><thead><tr><th>날짜</th><th>전투 유형</th><th>연맹원</th><th>참석 여부</th><th>점수</th><th>비고</th></tr></thead><tbody id="battleRows"></tbody></table></div>
   </section>
 <section class="card" id="adminConsole" style="display:none;margin-top:18px;padding:20px 22px"><div class="card-title"><div><h2>관리자 기록 관리</h2><p>잘못 업로드된 전투 기록을 삭제할 수 있습니다.</p></div><span class="badge orange">관리자 전용</span></div><div class="table-wrap"><table class="table" style="min-width:650px"><thead><tr><th>날짜</th><th>전투 유형</th><th>연맹원</th><th>점수</th><th></th></tr></thead><tbody id="adminRows"></tbody></table></div></section></main></div>
@@ -159,4 +159,9 @@ document.querySelectorAll('.nav-item').forEach(btn=>btn.addEventListener('click'
 // v1.1: Supabase Realtime refresh for shared battle data
 (function(){
   window.addEventListener('load',async()=>{try{if(!window.initOmySupabase)return;const c=await initOmySupabase();const a=JSON.parse(localStorage.getItem('omyAccess')||'{"code":"OMY2026"}');const q=await c.from('alliances').select('id').eq('invite_code',a.code).maybeSingle();if(!q.data)return;c.channel('omy-live-records').on('postgres_changes',{event:'*',schema:'public',table:'battle_records',filter:`alliance_id=eq.${q.data.id}`},()=>{location.reload()}).subscribe()}catch(e){console.warn('실시간 연결 실패',e)}})})();
+</script>
+
+<script>
+// v1.2: battle analysis date filter
+(function(){const date=document.getElementById('dateFilter'),type=document.getElementById('battleFilter'),table=document.getElementById('battleRows');if(!date||!table)return;const apply=()=>{const days=date.value==='all'?null:Number(date.value),cut=days?new Date(Date.now()-days*86400000):null;[...table.querySelectorAll('tr')].forEach(row=>{const cell=row.querySelector('td');if(!cell)return;const d=new Date(cell.textContent.trim());row.style.display=(!cut||!isNaN(d)&&d>=cut)?'':'none'});};date.addEventListener('change',apply);type.addEventListener('change',()=>setTimeout(apply,20));window.addEventListener('load',()=>setTimeout(apply,1100))})();
 </script>
