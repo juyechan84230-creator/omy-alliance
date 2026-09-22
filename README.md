@@ -49,3 +49,6 @@ Supabase에서 `Database → Replication`으로 이동해 `battle_records` 테�
 
 ## v2.3 사용자 이름 표시
 입장 화면에서 입력한 닉네임을 대시보드 인사말과 왼쪽 사용자 영역에 자동 표시합니다.
+
+## v2.4 연맹원 등급
+연맹원 등급을 `엔지니어`와 `전쟁리더`로 구분했습니다. 기존 데이터가 있으면 `supabase/roster-rank-update.sql`을 한 번 실행하세요.
