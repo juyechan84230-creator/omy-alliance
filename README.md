@@ -25,3 +25,6 @@
 
 ## v0.8 관리자 기록 수정
 `supabase/admin-functions.sql`을 다시 전체 실행하면 수정용 RPC가 추가됩니다. 관리자 모드에서 수정 버튼을 누르고 항목별로 값을 변경할 수 있습니다.
+
+## v0.9 연맹원 공유 관리
+`supabase/roster.sql`을 SQL Editor에서 실행하세요. 관리자 모드에서 추가한 연맹원이 Supabase에 저장되고 다른 사용자에게도 공유됩니다.
