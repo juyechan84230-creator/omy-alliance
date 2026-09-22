@@ -40,3 +40,6 @@ Supabase에서 `Database → Replication`으로 이동해 `battle_records` 테�
 
 ## v2.0 종합 분석
 개인 점수 TOP 5와 전투 유형별 참여율 요약을 추가했습니다. 기존 Supabase 기록을 기준으로 자동 계산됩니다.
+
+## v2.1 관리자 간 연맹원 동기화
+관리자가 연맹원을 추가·수정하면 같은 연맹에 접속한 다른 관리자 화면도 자동으로 갱신됩니다. `roster_members`가 `supabase_realtime` publication에 등록되어 있어야 합니다.
