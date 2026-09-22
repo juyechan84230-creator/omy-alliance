@@ -17,11 +17,5 @@
 
 현재 `index.html`은 브라우저 저장 기반 프로토타입이며, 다음 단계에서 Supabase 인증과 실제 DB 저장을 연결합니다.
 
-## 간편 입장
-현재 초기 버전은 이메일 로그인 대신 닉네임과 연맹 코드(`OMY2026`)로 입장합니다. 이 방식은 프로토타입용이며, 실제 운영 시 연맹 코드 검증은 서버 측에서 처리해야 합니다.
-
-## 익명 세션과 실제 업로드 연결
-1. Supabase에서 Anonymous Sign-Ins를 켭니다.
-2. `supabase/enable-anonymous.sql`을 SQL Editor에서 한 번 실행합니다.
-3. `battle-files` Storage bucket을 만듭니다.
-4. 새 `index.html`을 GitHub에 올려 Vercel에 배포합니다.
+## v0.5 공유 동기화
+입장 시 Supabase battle_records를 읽어 대시보드와 전투 기록 화면을 갱신합니다. `supabase/enable-anonymous.sql`을 한 번 실행한 뒤 배포하세요.

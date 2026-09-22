@@ -1,7 +1,17 @@
--- 간편 입장 MVP용 추가 정책
-create policy "alliances_public_read" on public.alliances for select to anon, authenticated using (true);
-create policy "alliances_authenticated_insert" on public.alliances for insert to authenticated with check (created_by = auth.uid());
-
--- Storage: battle-files 버킷에서 로그인 세션 사용자의 파일 업로드/조회 허용
-create policy "battle_files_authenticated_insert" on storage.objects for insert to authenticated with check (bucket_id = 'battle-files');
-create policy "battle_files_authenticated_read" on storage.objects for select to authenticated using (bucket_id = 'battle-files');
+drop policy if exists alliances_public_read on public.alliances;
+drop policy if exists alliances_authenticated_insert on public.alliances;
+drop policy if exists battle_records_authenticated_read on public.battle_records;
+drop policy if exists battle_records_authenticated_insert on public.battle_records;
+drop policy if exists uploaded_files_authenticated_read on public.uploaded_files;
+drop policy if exists uploaded_files_authenticated_insert on public.uploaded_files;
+drop policy if exists battle_files_authenticated_insert on storage.objects;
+drop policy if exists battle_files_authenticated_read on storage.objects;
+create policy alliances_public_read on public.alliances for select to anon, authenticated using (true);
+create policy alliances_authenticated_insert on public.alliances for insert to authenticated with check (created_by = auth.uid());
+create policy battle_records_authenticated_read on public.battle_records for select to authenticated using (true);
+create policy battle_records_authenticated_insert on public.battle_records for insert to authenticated with check (uploaded_by = auth.uid());
+create policy battle_records_authenticated_update on public.battle_records for update to authenticated using (true) with check (uploaded_by = auth.uid());
+create policy uploaded_files_authenticated_read on public.uploaded_files for select to authenticated using (uploaded_by = auth.uid());
+create policy uploaded_files_authenticated_insert on public.uploaded_files for insert to authenticated with check (uploaded_by = auth.uid());
+create policy battle_files_authenticated_insert on storage.objects for insert to authenticated with check (bucket_id = 'battle-files');
+create policy battle_files_authenticated_read on storage.objects for select to authenticated using (bucket_id = 'battle-files');
