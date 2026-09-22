@@ -19,3 +19,9 @@
 
 ## 간편 입장
 현재 초기 버전은 이메일 로그인 대신 닉네임과 연맹 코드(`OMY2026`)로 입장합니다. 이 방식은 프로토타입용이며, 실제 운영 시 연맹 코드 검증은 서버 측에서 처리해야 합니다.
+
+## 익명 세션과 실제 업로드 연결
+1. Supabase에서 Anonymous Sign-Ins를 켭니다.
+2. `supabase/enable-anonymous.sql`을 SQL Editor에서 한 번 실행합니다.
+3. `battle-files` Storage bucket을 만듭니다.
+4. 새 `index.html`을 GitHub에 올려 Vercel에 배포합니다.
