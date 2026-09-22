@@ -22,3 +22,6 @@
 
 ## v0.7 관리자 기록 삭제
 `supabase/admin-functions.sql`을 SQL Editor에서 한 번 실행하면 관리자 모드에서 전투 기록 삭제가 가능합니다. 관리자 코드는 DB 함수에서 검증됩니다.
+
+## v0.8 관리자 기록 수정
+`supabase/admin-functions.sql`을 다시 전체 실행하면 수정용 RPC가 추가됩니다. 관리자 모드에서 수정 버튼을 누르고 항목별로 값을 변경할 수 있습니다.
