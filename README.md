@@ -43,3 +43,6 @@ Supabase에서 `Database → Replication`으로 이동해 `battle_records` 테�
 
 ## v2.1 관리자 간 연맹원 동기화
 관리자가 연맹원을 추가·수정하면 같은 연맹에 접속한 다른 관리자 화면도 자동으로 갱신됩니다. `roster_members`가 `supabase_realtime` publication에 등록되어 있어야 합니다.
+
+## v2.2 모바일 최적화
+모바일 하단 메뉴, 터치 영역, 카드·표 레이아웃, 필터 배치를 최적화했습니다.
